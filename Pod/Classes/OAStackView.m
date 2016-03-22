@@ -358,9 +358,10 @@
   }
 }
 
-//- (void)dealloc
-//{
-//}
+- (void)dealloc
+{
+    [self removeObserverForViews:self.subviews];
+}
 
 @end
 

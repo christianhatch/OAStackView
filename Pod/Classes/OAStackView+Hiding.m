@@ -20,7 +20,13 @@
 }
 
 - (void)removeObserverForView:(UIView*)view {
-  [view removeObserver:self forKeyPath:@"hidden"];
+    @try {
+        [view removeObserver:self forKeyPath:@"hidden"];
+    } @catch (NSException *exception) {
+        NSLog(@"Caught exception trying to remove observer. %@", exception);
+    } @finally {
+        
+    }
 }
 
 - (void)addObserverForViews:(NSArray*)views {
@@ -53,14 +59,14 @@
 
 #pragma mark subviews
 
-//- (void)didAddSubview:(UIView *)subview {
-//  [super didAddSubview:subview];
-//  [self addObserverForView:subview];
-//}
-//
-//- (void)willRemoveSubview:(UIView *)subview {
-//  [super willRemoveSubview:subview];
-//  [self removeObserverForView:subview];
-//}
+- (void)didAddSubview:(UIView *)subview {
+  [super didAddSubview:subview];
+  [self addObserverForView:subview];
+}
+
+- (void)willRemoveSubview:(UIView *)subview {
+  [super willRemoveSubview:subview];
+  [self removeObserverForView:subview];
+}
 
 @end
