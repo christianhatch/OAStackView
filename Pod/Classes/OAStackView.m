@@ -358,12 +358,9 @@
   }
 }
 
-- (void)dealloc
-{
-    for (UIView *view in self.arrangedSubviews) {
-        [self removeObserverForView:view];
-    }
-}
+//- (void)dealloc
+//{
+//}
 
 @end
 
